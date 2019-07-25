@@ -1,5 +1,6 @@
 ${PODS_ROOT}/Target Support Files/Pods-Swifty Companion/Pods-Swifty Companion-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
+${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework
 ${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework
 ${BUILT_PRODUCTS_DIR}/OAuth2/OAuth2.framework
 ${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework

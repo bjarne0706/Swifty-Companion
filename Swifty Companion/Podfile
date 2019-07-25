@@ -9,5 +9,6 @@ target 'Swifty Companion' do
 	pod "OAuth2"
 	pod "Alamofire"
 	pod 'SwiftyJSON', '~> 4.0'
+	pod "AlamofireImage"
 	pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
 end

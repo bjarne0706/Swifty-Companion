@@ -21,8 +21,31 @@ class ViewController: UIViewController {
 	
 	@IBOutlet weak var myTextField: UITextField!
 	@IBAction func findBtn(_ sender: UIButton) {
-		findUser(myTextField.text!)
+		let myLogin = myTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+		if myLogin.count == 0 {
+			let alert = UIAlertController(title: "Alert", message: "Empty line", preferredStyle: UIAlertController.Style.alert)
+			alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+			self.present(alert, animated: true, completion: nil)
+			return 
+		}
+		let header: HTTPHeaders = ["Authorization" : "Bearer \(Token.accessToken!)"]
+		Alamofire.request("https://api.intra.42.fr/v2/users/" + myLogin, method: .get, headers: header).responseJSON { response in
+			print(response)
+			switch response.result {
+			case .success:
+				self.json = JSON(response.value!)
+				if (self.json!.isEmpty) { self.presentError(); return }
+				self.performSegue(withIdentifier: "showStudent", sender: "sender")
+				break
+			case .failure:
+				print("Failure")
+				self.presentError()
+				break
+			}
+		}
+		
 	}
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		let attributes = [
@@ -32,6 +55,7 @@ class ViewController: UIViewController {
 		myTextField.attributedPlaceholder = NSAttributedString(string: "Login", attributes:attributes)
 		myTextField.layer.borderColor = UIColor(red:0.32, green:0.78, blue:0.81, alpha:1.0).cgColor
 		myTextField.layer.borderWidth = 1.0
+		myTextField.text = "dchantse"
 		getToken()
 	}
 	
@@ -54,49 +78,40 @@ class ViewController: UIViewController {
 		}
 	}
 	
-	func findUser(_ login: String) {
-		let header: HTTPHeaders = ["Authorization" : "Bearer \(Token.accessToken!)"]
-		Alamofire.request("https://api.intra.42.fr/v2/users/" + login, method: .get, headers: header).responseJSON { response in
-			print(response)
-			switch response.result {
-			case .success:
-				self.json = JSON(response)
-				if (self.json!.isEmpty) { return }
-				self.fillInfo(self.json!)
-				self.fillSkills(self.json!)
-				self.fillProjects(self.json!)
-				self.performSegue(withIdentifier: "showStudent", sender: self)
-				break
-			case .failure:
-				break
-			}
+	
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if segue.identifier == "showStudent" {
+			let destVC = segue.destination as! StudentViewController
+			destVC.login = myTextField.text
+			destVC.title = myTextField.text
 		}
 	}
 	
-	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		
-	}
-	
-	func fillInfo(_ json: JSON) {
-		StudentInfo.correctionPoint = self.json!["correction_point"].string!
-		StudentInfo.grade = self.json!["grade"].string!
-		StudentInfo.level = self.json!["level"].string!
-		StudentInfo.name = self.json!["displayname"].string!
-		StudentInfo.login = self.json!["login"].string!
-		StudentInfo.email = self.json!["email"].string!
-		StudentInfo.imageURL = self.json!["image_url"].string!
-		StudentInfo.location = self.json!["location"].string!
-		StudentInfo.phone = self.json!["phone"].string!
-		StudentInfo.wallet = self.json!["wallet"].string!
-		print(StudentInfo.self)
-	}
-	
-	func fillSkills(_ json: JSON) {
-		
-	}
-	
-	func fillProjects(_ json: JSON) {
-		
-	}
+//	func fillInfo(_ json: JSON) {
+////		print(json)
+//		StudentInfo.correctionPoint = "\(json["correction_point"].int!)"
+//		StudentInfo.grade = json["cursus_users"][0]["grade"].string!
+//		StudentInfo.level = "\(json["cursus_users"][0]["level"].double!)"
+//		StudentInfo.name = json["displayname"].string!
+//		StudentInfo.login = json["login"].string!
+//		StudentInfo.email = json["email"].string!
+//		StudentInfo.imageURL = json["image_url"].string!
+//		if let checkLocation = json["location"].string {
+//			StudentInfo.location = "Available \(checkLocation)"
+//		} else {
+//			StudentInfo.location = "Unavailable"
+//		}
+//		StudentInfo.phone = json["phone"].string!
+//		StudentInfo.wallet = "\(json["wallet"].int!)"
+////		print(StudentInfo.correctionPoint,"\n", StudentInfo.grade,"\n",StudentInfo.level,"\n",StudentInfo.name,StudentInfo.login,"\n",StudentInfo.email,"\n",StudentInfo.imageURL,"\n",StudentInfo.location,"\n",StudentInfo.phone,"\n",StudentInfo.wallet)
+//	}
 }
 
+extension UIViewController {
+	func presentError() {
+		let alert = UIAlertController(title: "Alert", message: "No such user", preferredStyle: UIAlertController.Style.alert)
+		alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+		self.present(alert, animated: true, completion: nil)
+	}
+}

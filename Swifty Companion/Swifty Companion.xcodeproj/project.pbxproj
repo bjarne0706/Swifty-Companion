@@ -16,6 +16,8 @@
 		0DB7345422D5CA2000AA296D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DB7345222D5CA2000AA296D /* LaunchScreen.storyboard */; };
 		0DB7345C22D5EF4F00AA296D /* StudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB7345B22D5EF4F00AA296D /* StudentViewController.swift */; };
 		11B0697F08207F4104FB3992 /* Pods_Swifty_Companion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8063CECE55957EAF3E926EE6 /* Pods_Swifty_Companion.framework */; };
+		F4FFFA2C22EA134D000EC019 /* SkillTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FFFA2B22EA134C000EC019 /* SkillTableViewCell.swift */; };
+		F4FFFA2E22EA16C0000EC019 /* ProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FFFA2D22EA16C0000EC019 /* ProjectTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		1C1241A37A2B27BB1F90F52A /* Pods-Swifty Companion.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swifty Companion.release.xcconfig"; path = "Target Support Files/Pods-Swifty Companion/Pods-Swifty Companion.release.xcconfig"; sourceTree = "<group>"; };
 		8063CECE55957EAF3E926EE6 /* Pods_Swifty_Companion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Swifty_Companion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5CB1C8E8157152096C2954D /* Pods-Swifty Companion.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swifty Companion.debug.xcconfig"; path = "Target Support Files/Pods-Swifty Companion/Pods-Swifty Companion.debug.xcconfig"; sourceTree = "<group>"; };
+		F4FFFA2B22EA134C000EC019 /* SkillTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillTableViewCell.swift; sourceTree = "<group>"; };
+		F4FFFA2D22EA16C0000EC019 /* ProjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,7 +77,9 @@
 				0DB7345022D5CA2000AA296D /* Assets.xcassets */,
 				0D1B314122D62BB800BD7825 /* Token.swift */,
 				0D1B314322D6508200BD7825 /* Student.swift */,
+				F4FFFA2B22EA134C000EC019 /* SkillTableViewCell.swift */,
 				0DB7345B22D5EF4F00AA296D /* StudentViewController.swift */,
+				F4FFFA2D22EA16C0000EC019 /* ProjectTableViewCell.swift */,
 				0DB7345222D5CA2000AA296D /* LaunchScreen.storyboard */,
 				0DB7345522D5CA2000AA296D /* Info.plist */,
 			);
@@ -213,8 +219,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				0DB7345C22D5EF4F00AA296D /* StudentViewController.swift in Sources */,
+				F4FFFA2E22EA16C0000EC019 /* ProjectTableViewCell.swift in Sources */,
 				0DB7344C22D5CA1C00AA296D /* ViewController.swift in Sources */,
 				0DB7344A22D5CA1C00AA296D /* AppDelegate.swift in Sources */,
+				F4FFFA2C22EA134D000EC019 /* SkillTableViewCell.swift in Sources */,
 				0D1B314422D6508200BD7825 /* Student.swift in Sources */,
 				0D1B314222D62BB800BD7825 /* Token.swift in Sources */,
 			);
