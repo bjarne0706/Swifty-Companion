@@ -74,14 +74,14 @@ class StudentViewController: UIViewController , UITableViewDelegate, UITableView
 		if tableView == self.tableViewSkills {
 			if let cell = tableViewSkills.dequeueReusableCell(withIdentifier: "skillCell") as? SkillTableViewCell {
 				cell.skillLabel.text = skills[indexPath.row].name
-				cell.levelLabel.text = skills[indexPath.row].level
+				let levelArr = skills[indexPath.row].level.components(separatedBy: ".")
+				cell.levelLabel.text = "\(levelArr[0]).\(levelArr[1][0])"
 				cell.progressView.progress = Float(skills[indexPath.row].level)! / 21
 				return cell
 			}
 		} else {
 			if let cell = tableViewProjects.dequeueReusableCell(withIdentifier: "projectCell") as? ProjectTableViewCell {
 				cell.projectLabel.text = projects[indexPath.row].name
-
 				if (projects[indexPath.row].validated == "true") {
 					cell.markLabel.text = "\(projects[indexPath.row].finalMark)"
 					cell.markLabel.textColor = UIColor(red:0.36, green:0.72, blue:0.36, alpha:1.0)
@@ -183,5 +183,11 @@ class StudentViewController: UIViewController , UITableViewDelegate, UITableView
 			}
 		}
 		self.tableViewProjects.reloadData()
+	}
+}
+
+extension String {
+	subscript(i: Int) -> String {
+		return String(self[index(startIndex, offsetBy: i)])
 	}
 }

@@ -55,7 +55,6 @@ class ViewController: UIViewController {
 		myTextField.attributedPlaceholder = NSAttributedString(string: "Login", attributes:attributes)
 		myTextField.layer.borderColor = UIColor(red:0.32, green:0.78, blue:0.81, alpha:1.0).cgColor
 		myTextField.layer.borderWidth = 1.0
-		myTextField.text = "dchantse"
 		getToken()
 	}
 	
